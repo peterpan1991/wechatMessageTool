@@ -9,7 +9,10 @@ pip install -r requirements.txt
 
 2. 打包成exe：
 ```bash
-pyinstaller wechat_tool.spec
+flet pack main.py -n wechat_flet --add-data "core;core" --add-data "models;models" --onedir
+
+// 如在其他电脑上打包报错（ssl.SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)），需要添加certifi证书
+flet pack main.py -n wechat_flet --add-data "core;core" --add-data "models;models" --add-data "E:\pl\program\laragon\bin\python\python-3.13\Lib\site-packages\certifi;certifi" --onedir
 ```
 
 3. 打包完成后，exe文件在 `dist` 文件夹中
@@ -17,12 +20,12 @@ pyinstaller wechat_tool.spec
 ## 使用方法
 
 ### 搜索微信聊天记录：
-1. 双击运行 `wechat_tool.exe`
+1. 双击运行 `wechat_flet.exe`
 2. 点击"浏览"选择HTML文件夹
 3. 点击"搜索"输入搜索内容
 
 ### 导出流水记录：
-1. 双击运行 `wechat_tool.exe`
+1. 双击运行 `wechat_flet.exe`
 2. 点击"浏览"选择HTML文件夹
 3. 点击"导出流水记录"
 4. 选择保存路径后开始导出
